@@ -1,6 +1,6 @@
 {
   "name": "todolist",
-  "homepage" : "http://tricko17.github.io/todolist",
+  "homepage": "http://tricko17.github.io/todolist",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

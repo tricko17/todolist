@@ -1,6 +1,11 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import TodoReducers from './TodoReducers';
+import UserReducers from './UserReducers';
 
-const store = createStore(TodoReducers);
+const reducers = combineReducers({
+    todo: TodoReducers,
+    user: UserReducers
+})
+const store = createStore(reducers);
 
 export default store;
