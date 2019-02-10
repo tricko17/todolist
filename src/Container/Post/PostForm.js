@@ -1,12 +1,24 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import { 
+    Button, 
+    Form, 
+    FormGroup, 
+    Label, 
+    Input, 
+    FormText } 
+from 'reactstrap';
 
 class PostForm extends Component {
 
+    state = {
+        title:"",
+        description:""
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
-        const title = this.getTitle.value;
-        const description =  this.getDescription.value;
+        const { title, description } = this.state
         const data = {
           id: new Date(),
           title,
@@ -17,27 +29,41 @@ class PostForm extends Component {
             type:'ADD_TODO',
             data
         });
-        this.getTitle.value = '';
-        this.getDescription.value = '';
+        this.setState({
+            title: "",
+            description: ""
+        })
     }
 
     render() {
         return (
             <div>
                 <h1>Create Todo List</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <input 
-                        required type="text" 
-                        ref={(input)=>this.getTitle = input} 
-                        placeholder="Enter Todo Title"/>
-                    <br /><br />
-                    <textarea 
-                        required rows="5" 
-                        ref={(input)=>this.getDescription = input} cols="28" 
-                        placeholder="Enter Todo Description" />
-                    <br /><br />
-                    <button>Post</button>
-                </form>
+                <hr/>
+                <Form onSubmit={this.handleSubmit}>
+                    <FormGroup>
+                        <Label for="title">Title</Label>
+                        <Input 
+                            type="text" 
+                            name="title" 
+                            value={this.state.title}
+                            placeholder="Isi Title"
+                            onChange={(e) => this.setState({ title: e.target.value })}
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="description">Description</Label>
+                        <Input 
+                            type="textarea" 
+                            value={this.state.description}
+                            name="description" 
+                            rows="5"
+                            onChange={(e) => this.setState({ description: e.target.value })}
+                            placeholder="Isi Description"
+                        />
+                    </FormGroup>
+                    <Button color="primary">Save</Button>
+                </Form>
             </div>
         );
     }

@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import Store from './Store';
 import { Provider } from 'react-redux';
-import Post from './Container/Post';
+import MainLayout from './Container/MainLayout';
+import { BrowserRouter } from 'react-router-dom';
 
 class App extends Component {
     render() {
         return (
             <Provider store={Store}>
-                <Post/>
+                <BrowserRouter>
+                    <MainLayout/>
+                </BrowserRouter>
             </Provider>
         );
     }
